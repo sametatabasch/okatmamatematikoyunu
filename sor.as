@@ -29,7 +29,7 @@
 		 * @param son:int
 		 * @return int
 		 */
-		function rasgele(ilk:int,son:int)
+		public function rasgele(ilk:int,son:int)
 		{
 			var sonuc:Number = Math.random() * son + ilk;
 			return Math.round(sonuc);
@@ -135,7 +135,7 @@
 					this.cevap = r1 / r2;
 					break;
 			}
-			this.soru = r1 + ' ' + this.islem + ' ' + r2 + ' = ';
+			this.soru = r1 + ' ' + this.islem + ' ' + r2 ;
 		}
 
 
