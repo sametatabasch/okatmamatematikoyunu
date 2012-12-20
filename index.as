@@ -4,12 +4,11 @@ import flash.events.TimerEvent;
 
 var timer:Timer = new Timer(1000,60);
 timer.addEventListener(TimerEvent.TIMER,sayac);
-var sn:Number = 0;
-var dk:Number = 1;
+var sn:Number = 59;
+var dk:Number = 0;
 var dakika:String;
 var saniye:String;
-var puan:int;
-var i:int = 0;
+var puan:int=0;
 var birak:Boolean = false;//okbırakıldı anlamında
 var atildi:Boolean = false;//yay bırakıldı anlamında
 
@@ -46,9 +45,9 @@ function bitti(e:TimerEvent)
 {
 	gotoAndStop(2);
 	skorT.text = puan.toString();
-	stage.removeEventListener(MouseEvent.MOUSE_MOVE,kaydir);
-	yenidenOyna.addEventListener(MouseEvent.CLICK,function(){gotoAndStop(1)});
-	puan = 0;
+stage.removeEventListener(MouseEvent.MOUSE_MOVE,kaydir);
+yenidenOyna.addEventListener(MouseEvent.CLICK,function(){gotoAndStop(1)});
+puan = 0;
 }
 var soru:sor = new sor(1);
 soru.soruUret();
@@ -93,14 +92,14 @@ function calistir(mouse:Event)
 				birak = false;
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 				ok_mc.y = 629.7;
-				Bbalon.visible=true;
-				B.visible=true;
+				Bbalon.visible = true;
+				B.visible = true;
 				Bbalon.gotoAndStop(1);
-				Cbalon.visible=true;
-				C.visible=true;
+				Cbalon.visible = true;
+				C.visible = true;
 				Cbalon.gotoAndStop(1);
-				Dbalon.visible=true;
-				D.visible=true;
+				Dbalon.visible = true;
+				D.visible = true;
 				Dbalon.gotoAndStop(1);
 				soru.soruUret();
 				soruT.text = soru.soru;
@@ -110,8 +109,11 @@ function calistir(mouse:Event)
 			{
 				Abalon.gotoAndPlay(2);
 				A.visible = false;
-				birak=false; // bir defa patlamasını sağlıyor
-				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);//yayın tekrar hareketini sağlıyor
+				birak = false;// bir defa patlamasını sağlıyor
+				puan-=2;
+				puanT.text=puan.toString();
+				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
+				//yayın tekrar hareketini sağlıyor;
 				ok_mc.y = 629.7;//okun yaya geri gelmesini sağlıyor
 			}
 		}
@@ -126,14 +128,14 @@ function calistir(mouse:Event)
 				birak = false;
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 				ok_mc.y = 629.7;
-				Abalon.visible=true;
-				A.visible=true;
+				Abalon.visible = true;
+				A.visible = true;
 				Abalon.gotoAndStop(1);
-				Cbalon.visible=true;
-				C.visible=true;
+				Cbalon.visible = true;
+				C.visible = true;
 				Cbalon.gotoAndStop(1);
-				Dbalon.visible=true;
-				D.visible=true;
+				Dbalon.visible = true;
+				D.visible = true;
 				Dbalon.gotoAndStop(1);
 				soru.soruUret();
 				soruT.text = soru.soru;
@@ -143,7 +145,9 @@ function calistir(mouse:Event)
 			{
 				Bbalon.gotoAndPlay(2);
 				B.visible = false;
-				birak=false;
+				puan-=2;
+				puanT.text=puan.toString();
+				birak = false;
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 				ok_mc.y = 629.7;
 			}
@@ -159,14 +163,14 @@ function calistir(mouse:Event)
 				birak = false;
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 				ok_mc.y = 629.7;
-				Bbalon.visible=true;
-				B.visible=true;
+				Bbalon.visible = true;
+				B.visible = true;
 				Bbalon.gotoAndStop(1);
-				Abalon.visible=true;
-				A.visible=true;
+				Abalon.visible = true;
+				A.visible = true;
 				Abalon.gotoAndStop(1);
-				Dbalon.visible=true;
-				D.visible=true;
+				Dbalon.visible = true;
+				D.visible = true;
 				Dbalon.gotoAndStop(1);
 				soru.soruUret();
 				soruT.text = soru.soru;
@@ -176,7 +180,9 @@ function calistir(mouse:Event)
 			{
 				Cbalon.gotoAndPlay(2);
 				C.visible = false;
-				birak=false;
+				birak = false;
+				puan-=2;
+				puanT.text=puan.toString();
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 				ok_mc.y = 629.7;
 			}
@@ -192,14 +198,14 @@ function calistir(mouse:Event)
 				birak = false;
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 				ok_mc.y = 629.7;
-				Bbalon.visible=true;
-				B.visible=true;
+				Bbalon.visible = true;
+				B.visible = true;
 				Bbalon.gotoAndStop(1);
-				Cbalon.visible=true;
-				C.visible=true;
+				Cbalon.visible = true;
+				C.visible = true;
 				Cbalon.gotoAndStop(1);
-				Abalon.visible=true;
-				A.visible=true;
+				Abalon.visible = true;
+				A.visible = true;
 				Abalon.gotoAndStop(1);
 				soru.soruUret();
 				soruT.text = soru.soru;
@@ -209,7 +215,9 @@ function calistir(mouse:Event)
 			{
 				Dbalon.gotoAndPlay(2);
 				D.visible = false;
-				birak=false;
+				birak = false;
+				puan-=2;
+				puanT.text=puan.toString();
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 				ok_mc.y = 629.7;
 			}
