@@ -8,7 +8,7 @@ var sn:Number = 59;
 var dk:Number = 0;
 var dakika:String;
 var saniye:String;
-var puan:int=0;
+var puan:int = 0;
 var birak:Boolean = false;//okbırakıldı anlamında
 var atildi:Boolean = false;//yay bırakıldı anlamında
 
@@ -16,7 +16,7 @@ puanT.text = puan.toString();
 timer.start();
 function sayac(e:TimerEvent)
 {
-	if (sn<10)
+	if ((sn < 10))
 	{
 		saniye = '0' + sn.toString();
 	}
@@ -24,7 +24,7 @@ function sayac(e:TimerEvent)
 	{
 		saniye = sn.toString();
 	}
-	if (dk<10)
+	if ((dk < 10))
 	{
 		dakika = '0' + dk.toString();
 	}
@@ -34,7 +34,7 @@ function sayac(e:TimerEvent)
 	}
 	süre.text = dakika + ':' + saniye;
 	sn--;
-	if (sn<=0)
+	if ((sn <= 0))
 	{
 		dk--;
 		sn = 59;
@@ -45,9 +45,9 @@ function bitti(e:TimerEvent)
 {
 	gotoAndStop(2);
 	skorT.text = puan.toString();
-stage.removeEventListener(MouseEvent.MOUSE_MOVE,kaydir);
-yenidenOyna.addEventListener(MouseEvent.CLICK,function(){gotoAndStop(1)});
-puan = 0;
+	stage.removeEventListener(MouseEvent.MOUSE_MOVE,kaydir);
+	yenidenOyna.addEventListener(MouseEvent.CLICK,function(){gotoAndStop(1)});
+	puan = 0;
 }
 var soru:sor = new sor(1);
 soru.soruUret();
@@ -83,7 +83,7 @@ function calistir(mouse:Event)
 		}
 		if (ok_mc.hitTestObject(Abalon))
 		{
-			if (dogruCevap()==Abalon)
+			if ((dogruCevap() == Abalon))
 			{
 				Abalon.gotoAndPlay(2);
 				puan +=  10;
@@ -110,8 +110,8 @@ function calistir(mouse:Event)
 				Abalon.gotoAndPlay(2);
 				A.visible = false;
 				birak = false;// bir defa patlamasını sağlıyor
-				puan-=2;
-				puanT.text=puan.toString();
+				puan -=  2;
+				puanT.text = puan.toString();
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 				//yayın tekrar hareketini sağlıyor;
 				ok_mc.y = 629.7;//okun yaya geri gelmesini sağlıyor
@@ -119,7 +119,7 @@ function calistir(mouse:Event)
 		}
 		if (ok_mc.hitTestObject(Bbalon))
 		{
-			if (dogruCevap()==Bbalon)
+			if ((dogruCevap() == Bbalon))
 			{
 				Bbalon.gotoAndPlay(2);
 				puan +=  10;
@@ -145,8 +145,8 @@ function calistir(mouse:Event)
 			{
 				Bbalon.gotoAndPlay(2);
 				B.visible = false;
-				puan-=2;
-				puanT.text=puan.toString();
+				puan -=  2;
+				puanT.text = puan.toString();
 				birak = false;
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 				ok_mc.y = 629.7;
@@ -154,7 +154,7 @@ function calistir(mouse:Event)
 		}
 		if (ok_mc.hitTestObject(Cbalon))
 		{
-			if (dogruCevap()==Cbalon)
+			if ((dogruCevap() == Cbalon))
 			{
 				Cbalon.gotoAndPlay(2);
 				puan +=  10;
@@ -181,15 +181,15 @@ function calistir(mouse:Event)
 				Cbalon.gotoAndPlay(2);
 				C.visible = false;
 				birak = false;
-				puan-=2;
-				puanT.text=puan.toString();
+				puan -=  2;
+				puanT.text = puan.toString();
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 				ok_mc.y = 629.7;
 			}
 		}
 		if (ok_mc.hitTestObject(Dbalon))
 		{
-			if (dogruCevap()==Dbalon)
+			if ((dogruCevap() == Dbalon))
 			{
 				Dbalon.gotoAndPlay(2);
 				puan +=  10;
@@ -216,8 +216,8 @@ function calistir(mouse:Event)
 				Dbalon.gotoAndPlay(2);
 				D.visible = false;
 				birak = false;
-				puan-=2;
-				puanT.text=puan.toString();
+				puan -=  2;
+				puanT.text = puan.toString();
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 				ok_mc.y = 629.7;
 			}
@@ -240,19 +240,19 @@ function cevapYerlestir()
 	var cevaplar:Array = new Array(4);
 	cevaplar[0] = soru.cevap;
 	var i:int;
-	for (i=1; i<4; i++)
+	for (i = 1; i < 4; i++)
 	{
-		var rCevap:int=soru.rasgele((soru.cevap-5),(soru.cevap+5));
-		while (cevaplar.lastIndexOf(rCevap)>=0)
+		var rCevap:int = soru.rasgele(soru.cevap - 5,soru.cevap + 5);
+		while (cevaplar.lastIndexOf(rCevap) >= 0)
 		{
-			rCevap=soru.rasgele((soru.cevap-5),(soru.cevap+5));
+			rCevap = soru.rasgele(soru.cevap - 5,soru.cevap + 5);
 		}
 		cevaplar[i] = rCevap;
 	}
 	var gecici:int = cevaplar[dogruIndexNo];
 	cevaplar[dogruIndexNo] = soru.cevap;
 	cevaplar[0] = gecici;
-	for (i=0; i<4; i++)
+	for (i = 0; i < 4; i++)
 	{
 		switch (i)
 		{
