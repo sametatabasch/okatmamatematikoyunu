@@ -25,7 +25,8 @@
 			this.bdk = bdk;
 			this.bsn = bsn;
 			this.timer.addEventListener(TimerEvent.TIMER,this.sayac);
-			this.sureObj=gsureObj;
+			this.sureObj = gsureObj;
+			this.sureBaslat();
 			trace('süre say başladı'+this.sn+'dk'+this.dk);
 		}
 		/**
@@ -54,7 +55,7 @@
 			this.sureObj.text = dakika + ':' + saniye;
 			if ((this.ileriGeri == '-'))
 			{
-				
+
 				if (this.sn <= this.bsn && this.dk <= this.bdk)
 				{
 					this.complate();
@@ -68,7 +69,7 @@
 			}
 			else
 			{
-				
+
 				if (this.sn >= this.bsn && this.dk >= this.bdk)
 				{
 					this.complate();
@@ -80,11 +81,10 @@
 				}
 				this.sn++;
 			}
-			
+
 		}
 		/**
 		* süre sayarı başlatır
-		* 
 		* 
 		**/
 		public function sureBaslat()
@@ -94,8 +94,6 @@
 		}
 		/**
 		* süre sayarı durdurur
-		* 
-		* 
 		* 
 		**/
 		public function sureDurdur()

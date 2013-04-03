@@ -1,39 +1,66 @@
 ﻿import flash.events.MouseEvent;
 import flash.utils.Timer;
 import flash.events.TimerEvent;
+/*global*/
+var puan:int = 0;
+var birak:Boolean = false;//okbırakıldı anlamında
+var atildi:Boolean = false;//yay bırakıldı anlamında
+var sure:sureSay;
+/**
+* Süre bitince Çalışacak fonksiyon 
+* 
+**/
+function oyunBitti()
+{
+	gotoAndStop(3);
+	skorT.text = puan.toString();
+	stage.removeEventListener(MouseEvent.MOUSE_MOVE,kaydir);
+	yenidenOyna.addEventListener(MouseEvent.CLICK,function(){gotoAndStop(1)});
+	puan = 0;
+}
+/////////////////////////////////////////////////;
+//////////////////kapat butonu///////////////////
+/////////////////////////////////////////////////
+kapat.addEventListener(MouseEvent.CLICK,kapatsinmi);
+function kapatsinmi(e:MouseEvent)
+{
+	kapat.gotoAndStop(2);
+	sure.sureDurdur();
+	kapat.evetButon.addEventListener(MouseEvent.MOUSE_DOWN,function (){fscommand("quit");});
+	kapat.hayirButon.addEventListener(MouseEvent.MOUSE_DOWN,function (){kapat.gotoAndStop(1);});
+}
+/////////////////////////////////////////////////
 /*kare 1*/
 basla.addEventListener(MouseEvent.CLICK,kare2);
 /*kare 2*/
+/**
+* oku Ekranda kaydırma işlemini yapan fonksiyon
+* 
+* @param mouse MouseEvent
+* 
+**/
+function kaydir(mouse:MouseEvent)
+{
+	yay_mc.x = mouse.stageX;
+	ok_mc.x = mouse.stageX;
+}
 function kare2(e:MouseEvent)
-{	
+{
+	trace(seviyeBelirle.seviye);
 	gotoAndStop(2);
-	
-	var puan:int = 0;
-	var birak:Boolean = false;//okbırakıldı anlamında
-	var atildi:Boolean = false;//yay bırakıldı anlamında
-	var sure:sureSay= new sureSay(0,50,bitti1,süre,'+',1,0);
-	sure.sureBaslat();
-	
+	sure = new sureSay(0,50,oyunBitti,süre,'+',1,0);
+
+	//sure.sureBaslat();
+
 	puanT.text = puan.toString();
-	
-	function bitti1()
-	{
-		gotoAndStop(3);
-		skorT.text = puan.toString();
-		stage.removeEventListener(MouseEvent.MOUSE_MOVE,kaydir);
-		yenidenOyna.addEventListener(MouseEvent.CLICK,function(){gotoAndStop(1)});
-		puan = 0;
-	}
+
+
 	var soru:sor = new sor(1);
 	soru.soruUret();
 	soruT.text = soru.soru;
 	cevapYerlestir();
 	stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
-	function kaydir(mouse:MouseEvent)
-	{
-		yay_mc.x = mouse.stageX;
-		ok_mc.x = mouse.stageX;
-	}
+
 	stage.addEventListener(MouseEvent.CLICK,function(){birak=true;atildi=true;});
 	stage.addEventListener(Event.ENTER_FRAME,calistir);
 	function calistir(mouse:Event)
