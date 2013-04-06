@@ -14,9 +14,9 @@ var soru:sor;//sor sınıfının kullanılacağı değişken
 function oyunBitti()
 {
 	gotoAndStop(3);
-	skorT.text = puan.toString();
+	skorT.text = soru.soruSayisi+'soru soruldu'+puan.toString()+'puan aldın';
 	stage.removeEventListener(MouseEvent.MOUSE_MOVE,kaydir);
-	zemin.removeEventListener(MouseEvent.CLICK,okAt);
+	//tiklamaAlani.removeEventListener(MouseEvent.CLICK,okAt);
 	stage.removeEventListener(Event.ENTER_FRAME,calistir);
 	yenidenOyna.addEventListener(MouseEvent.CLICK,function(){gotoAndStop(1)});
 	puan = 0;
@@ -47,7 +47,7 @@ function kare2(e:MouseEvent)
 	soruT.text = soru.soru;
 	cevapYerlestir();
 	stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
-	stage.addEventListener(MouseEvent.CLICK,okAt);
+	tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
 	stage.addEventListener(Event.ENTER_FRAME,calistir);
 }
 /**
@@ -68,7 +68,6 @@ function kaydir(mouse:MouseEvent)
 function okAt(e:MouseEvent){
 	okAtildi=true;
 	yayBirakildi=true;
-	trace('ok at çalıştı');
 }
 
 function calistir(mouse:Event)
@@ -81,7 +80,7 @@ function calistir(mouse:Event)
 			yayBirakildi = false;//yayın sürekli atılmasını ses çıkartmasını engellemek için
 		}
 		stage.removeEventListener(MouseEvent.MOUSE_MOVE,kaydir);
-		stage.removeEventListener(MouseEvent.CLICK,okAt);
+		tiklamaAlani.removeEventListener(MouseEvent.CLICK,okAt);
 		if (ok_mc.y >= 0)
 		{
 			ok_mc.y -=  20;
@@ -90,7 +89,7 @@ function calistir(mouse:Event)
 		{
 			okAtildi = false;
 			stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
-			stage.addEventListener(MouseEvent.CLICK,okAt);
+			tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
 			ok_mc.y = 629.7;
 		}
 		
@@ -104,7 +103,7 @@ function calistir(mouse:Event)
 				Abalon.cevap = true;
 				okAtildi = false;//ok  atıldı  ama ok  ekrandan çıkmadığı  için burada tekrar false yapıp listenerları  ekliyoruz
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
-				stage.addEventListener(MouseEvent.CLICK,okAt);
+				tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
 				ok_mc.y = 629.7;
 				Bbalon.visible = true;
 				B.visible = true;
@@ -127,7 +126,7 @@ function calistir(mouse:Event)
 				puan -=  2;
 				puanT.text = puan.toString();
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
-				stage.addEventListener(MouseEvent.CLICK,okAt);
+				tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
 				//yayın tekrar hareketini sağlıyor;
 				ok_mc.y = 629.7;//okun yaya geri gelmesini sağlıyor
 			}
@@ -142,7 +141,7 @@ function calistir(mouse:Event)
 				Bbalon.cevap = true;
 				okAtildi = false;
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
-				stage.addEventListener(MouseEvent.CLICK,okAt);
+				tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
 				ok_mc.y = 629.7;
 				Abalon.visible = true;
 				A.visible = true;
@@ -165,7 +164,7 @@ function calistir(mouse:Event)
 				puanT.text = puan.toString();
 				okAtildi = false;
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
-				stage.addEventListener(MouseEvent.CLICK,okAt);
+				tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
 				ok_mc.y = 629.7;
 			}
 		}
@@ -179,7 +178,7 @@ function calistir(mouse:Event)
 				Cbalon.cevap = true;
 				okAtildi = false;
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
-				stage.addEventListener(MouseEvent.CLICK,okAt);
+				tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
 				ok_mc.y = 629.7;
 				Bbalon.visible = true;
 				B.visible = true;
@@ -202,7 +201,7 @@ function calistir(mouse:Event)
 				puan -=  2;
 				puanT.text = puan.toString();
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
-				stage.addEventListener(MouseEvent.CLICK,okAt);
+				tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
 				ok_mc.y = 629.7;
 			}
 		}
@@ -216,7 +215,7 @@ function calistir(mouse:Event)
 				Dbalon.cevap = true;
 				okAtildi = false;
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
-				stage.addEventListener(MouseEvent.CLICK,okAt);
+				tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
 				ok_mc.y = 629.7;
 				Bbalon.visible = true;
 				B.visible = true;
@@ -239,7 +238,7 @@ function calistir(mouse:Event)
 				puan -=  2;
 				puanT.text = puan.toString();
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
-				stage.addEventListener(MouseEvent.CLICK,okAt);
+				tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
 				ok_mc.y = 629.7;
 			}
 		}
@@ -250,23 +249,23 @@ function calistir(mouse:Event)
  *
  * balonler üzerine cevaplar yerleştirir
  */
-var a:Array;
+var a:Array;//şıkları  tutan değişken
 // doğru şıkkı  seç
 var dogruIndexNo:int;
 function cevapYerlestir()
 {
 	a = ['A','B','C','D'];
 	dogruIndexNo = soru.rasgele(0,3);
-	var ds:String = a[dogruIndexNo];
+	var ds:String = a[dogruIndexNo];//doğru şık
 	var cevaplar:Array = new Array(4);
 	cevaplar[0] = soru.cevap;
 	var i:int;
-	for (i = 1; i < 4; i++)
+	for (i = 1; i < 4; i++)//bu döngü oyunun donmasına sebep olabiliyor cevap aralığını -5,+5 den -10,+10 olarak değiştirdim 
 	{
-		var rCevap:int = soru.rasgele(soru.cevap - 5,soru.cevap + 5);
+		var rCevap:int = soru.rasgele(soru.cevap - 10,soru.cevap + 10);
 		while (cevaplar.lastIndexOf(rCevap) >= 0)
 		{
-			rCevap = soru.rasgele(soru.cevap - 5,soru.cevap + 5);
+			rCevap = soru.rasgele(soru.cevap - 10,soru.cevap + 10);
 		}
 		cevaplar[i] = rCevap;
 	}
@@ -295,7 +294,7 @@ function cevapYerlestir()
 /**
  * dogruBalon
  *
- * doğru cevabın olduğu balonu  belirler
+ * doğru cevabın olduğu balonu  belirler.cevap yerleştirden sonra çalıştırılmalı
  */
 var dogruBalon:Object;
 function dogruCevap()

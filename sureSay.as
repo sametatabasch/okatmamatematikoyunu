@@ -27,7 +27,6 @@
 			this.timer.addEventListener(TimerEvent.TIMER,this.sayac);
 			this.sureObj = gsureObj;
 			this.sureBaslat();
-			trace('süre say başladı'+this.sn+'dk'+this.dk);
 		}
 		/**
 		* 

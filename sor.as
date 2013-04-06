@@ -12,6 +12,7 @@
 		public var islem:String;
 		public var soru:String;
 		public var cevap:int;
+		public var soruSayisi:int=0;
 
 		/**
 		 * constructor metod u 
@@ -136,6 +137,7 @@
 					break;
 			}
 			this.soru = r1 + ' ' + this.islem + ' ' + r2 + ' = ? ' ;
+			soruSayisi++;
 		}
 
 
