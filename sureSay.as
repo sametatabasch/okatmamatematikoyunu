@@ -53,32 +53,37 @@
 			}
 			this.sureObj.text = dakika + ':' + saniye;
 			if ((this.ileriGeri == '-'))
-			{
+			{// geri sayım 
 
 				if (this.sn <= this.bsn && this.dk <= this.bdk)
-				{
+				{//süre bitti
 					this.complate();
 				}
 				if ((this.sn <= 0))
-				{
+				{// bir dakika bitti 
 					this.dk--;
 					this.sn = 59;
 				}
-				this.sn--;
+				else
+				{
+					this.sn--;
+				}
 			}
 			else
-			{
-
+			{//ileri sayım
 				if (this.sn >= this.bsn && this.dk >= this.bdk)
-				{
+				{// süre bitti 
 					this.complate();
 				}
 				if ((this.sn == 59))
-				{
+				{// bir dakika doldu 
 					this.dk++;
 					this.sn = 00;
 				}
-				this.sn++;
+				else
+				{
+					this.sn++;
+				}
 			}
 
 		}

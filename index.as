@@ -1,4 +1,5 @@
-﻿import flash.events.MouseEvent;
+﻿fscommand("allowscale", "true");
+import flash.events.MouseEvent;
 import flash.utils.Timer;
 import flash.events.TimerEvent;
 /*global*/
@@ -21,16 +22,14 @@ function oyunBitti()
 	yenidenOyna.addEventListener(MouseEvent.CLICK,function(){gotoAndStop(1)});
 	puan = 0;
 }
-/////////////////////////////////////////////////;
-//////////////////kapat butonu///////////////////
-/////////////////////////////////////////////////
+/*kapat butonu*/
 kapat.addEventListener(MouseEvent.CLICK,kapatsinmi);
 function kapatsinmi(e:MouseEvent)
 {
 	kapat.gotoAndStop(2);
-	sure.sureDurdur();
+	if(currentFrame==2) sure.sureDurdur(); // oyunun  oynandığı  karede ise süreyi  durdur 
 	kapat.evetButon.addEventListener(MouseEvent.MOUSE_DOWN,function (){fscommand("quit");});
-	kapat.hayirButon.addEventListener(MouseEvent.MOUSE_DOWN,function (){kapat.gotoAndStop(1);sure.sureBaslat();});
+	kapat.hayirButon.addEventListener(MouseEvent.MOUSE_DOWN,function (){kapat.gotoAndStop(1);if(currentFrame==2)sure.sureBaslat();});
 }
 /////////////////////////////////////////////////;
 /*kare 1*/
@@ -40,7 +39,7 @@ function kare2(e:MouseEvent)
 {
 	var seviye:int = seviyeBelirle.seviye;
 	gotoAndStop(2);
-	sure = new sureSay(0,10,oyunBitti,süre);
+	sure = new sureSay(1,0,oyunBitti,süre);// kronometre
 	puanT.text = puan.toString();
 	soru = new sor(seviye);//soru sınıfının Çağırılması
 	soru.soruUret();
