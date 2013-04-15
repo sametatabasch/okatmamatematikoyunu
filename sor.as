@@ -123,10 +123,11 @@
 					this.cevap = r1 + r2;
 					break;
 				case '-' :
-					while (r2>r1 && this.seviye==1)
+					if(r2>r1 && this.seviye==1)
 					{
-						r1 = this.rasgele(0,10);
-						r2 = this.rasgele(0,10);
+						var gecici:int=r1;
+						r1 = r2;
+						r2 = gecici;
 					}
 					this.cevap = r1 - r2;
 					break;
