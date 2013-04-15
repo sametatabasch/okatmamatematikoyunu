@@ -8,11 +8,11 @@
 	public class sor
 	{
 
-		public var seviye:int;
+		public var seviye:int = 1;// ön tanımlı değer 1 
 		public var islem:String;
 		public var soru:String;
 		public var cevap:int;
-		public var soruSayisi:int=0;
+		public var soruSayisi:int = 0;
 
 		/**
 		 * constructor metod u 
@@ -22,7 +22,13 @@
 		public function sor(seviye)
 		{
 			// constructor code
-			this.seviye = seviye;
+			if (seviye!=null )
+			{
+				if (seviye!=0)
+				{
+					this.seviye = seviye;
+				}
+			}
 		}
 		/**
 		 * belirtilen iki sayı arasında rastgele sayı üreten fonksiyon 
@@ -67,7 +73,7 @@
 					return this.islem;
 					break;
 				default :
-					arr = ['+','+','-','+','+','-','-','+','-','-'];
+					arr = ['+','+','-','+','+','-','+','+','-','-'];
 					this.islem = arr[this.rasgele(0,9)];
 					return this.islem;
 					break;
@@ -136,7 +142,7 @@
 					this.cevap = r1 / r2;
 					break;
 			}
-			this.soru = r1 + ' ' + this.islem + ' ' + r2 + ' = ? ' ;
+			this.soru = r1 + ' ' + this.islem + ' ' + r2 + ' = ? ';
 			soruSayisi++;
 		}
 

@@ -15,7 +15,7 @@ var soru:sor;//sor sınıfının kullanılacağı değişken
 function oyunBitti()
 {
 	gotoAndStop(3);
-	skorT.text = soru.soruSayisi+'soru soruldu'+puan.toString()+'puan aldın';
+	skorT.text = soru.soruSayisi + 'soru soruldu' + puan.toString() + 'puan aldın';
 	stage.removeEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 	//tiklamaAlani.removeEventListener(MouseEvent.CLICK,okAt);
 	stage.removeEventListener(Event.ENTER_FRAME,calistir);
@@ -27,7 +27,11 @@ kapat.addEventListener(MouseEvent.CLICK,kapatsinmi);
 function kapatsinmi(e:MouseEvent)
 {
 	kapat.gotoAndStop(2);
-	if(currentFrame==2) sure.sureDurdur(); // oyunun  oynandığı  karede ise süreyi  durdur 
+	if (currentFrame==2)
+	{
+		sure.sureDurdur();
+	}
+	// oyunun  oynandığı  karede ise süreyi  durdur ;
 	kapat.evetButon.addEventListener(MouseEvent.MOUSE_DOWN,function (){fscommand("quit");});
 	kapat.hayirButon.addEventListener(MouseEvent.MOUSE_DOWN,function (){kapat.gotoAndStop(1);if(currentFrame==2)sure.sureBaslat();});
 }
@@ -38,11 +42,13 @@ basla.addEventListener(MouseEvent.CLICK,kare2);
 function kare2(e:MouseEvent)
 {
 	var seviye:int = seviyeBelirle.seviye;
+
 	gotoAndStop(2);
-	sure = new sureSay(1,0,oyunBitti,süre);// kronometre
+	sure = new sureSay(0,10,oyunBitti,süre);// kronometre
 	puanT.text = puan.toString();
 	soru = new sor(seviye);//soru sınıfının Çağırılması
 	soru.soruUret();
+	puanver(true,true);
 	soruT.text = soru.soru;
 	cevapYerlestir();
 	stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
@@ -64,9 +70,10 @@ function kaydir(mouse:MouseEvent)
 * Ok atıldığında yapılacak işlemler
 * 
 **/
-function okAt(e:MouseEvent){
-	okAtildi=true;
-	yayBirakildi=true;
+function okAt(e:MouseEvent)
+{
+	okAtildi = true;
+	yayBirakildi = true;
 }
 
 function calistir(mouse:Event)
@@ -91,13 +98,13 @@ function calistir(mouse:Event)
 			tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
 			ok_mc.y = 629.7;
 		}
-		
+
 		if (ok_mc.hitTestObject(Abalon))
 		{
 			if ((dogruCevap() == Abalon))
 			{
 				Abalon.gotoAndPlay(2);
-				puan +=  10;
+				puanver(true);
 				puanT.text = puan.toString();
 				Abalon.cevap = true;
 				okAtildi = false;//ok  atıldı  ama ok  ekrandan çıkmadığı  için burada tekrar false yapıp listenerları  ekliyoruz
@@ -114,6 +121,7 @@ function calistir(mouse:Event)
 				D.visible = true;
 				Dbalon.gotoAndStop(1);
 				soru.soruUret();
+				puanver(true,true);
 				soruT.text = soru.soru;
 				cevapYerlestir();
 			}
@@ -122,7 +130,7 @@ function calistir(mouse:Event)
 				Abalon.gotoAndPlay(2);
 				A.visible = false;
 				okAtildi = false;// bir defa patlamasını sağlıyor
-				puan -=  2;
+				puanver(false);
 				puanT.text = puan.toString();
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 				tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
@@ -135,7 +143,7 @@ function calistir(mouse:Event)
 			if ((dogruCevap() == Bbalon))
 			{
 				Bbalon.gotoAndPlay(2);
-				puan +=  10;
+				puanver(true);
 				puanT.text = puan.toString();
 				Bbalon.cevap = true;
 				okAtildi = false;
@@ -152,6 +160,7 @@ function calistir(mouse:Event)
 				D.visible = true;
 				Dbalon.gotoAndStop(1);
 				soru.soruUret();
+				puanver(true,true);
 				soruT.text = soru.soru;
 				cevapYerlestir();
 			}
@@ -159,7 +168,7 @@ function calistir(mouse:Event)
 			{
 				Bbalon.gotoAndPlay(2);
 				B.visible = false;
-				puan -=  2;
+				puanver(false);
 				puanT.text = puan.toString();
 				okAtildi = false;
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
@@ -172,7 +181,7 @@ function calistir(mouse:Event)
 			if ((dogruCevap() == Cbalon))
 			{
 				Cbalon.gotoAndPlay(2);
-				puan +=  10;
+				puanver(true);
 				puanT.text = puan.toString();
 				Cbalon.cevap = true;
 				okAtildi = false;
@@ -189,6 +198,7 @@ function calistir(mouse:Event)
 				D.visible = true;
 				Dbalon.gotoAndStop(1);
 				soru.soruUret();
+				puanver(true,true);
 				soruT.text = soru.soru;
 				cevapYerlestir();
 			}
@@ -197,7 +207,7 @@ function calistir(mouse:Event)
 				Cbalon.gotoAndPlay(2);
 				C.visible = false;
 				okAtildi = false;
-				puan -=  2;
+				puanver(false);
 				puanT.text = puan.toString();
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 				tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
@@ -209,7 +219,7 @@ function calistir(mouse:Event)
 			if ((dogruCevap() == Dbalon))
 			{
 				Dbalon.gotoAndPlay(2);
-				puan +=  10;
+				puanver(true);
 				puanT.text = puan.toString();
 				Dbalon.cevap = true;
 				okAtildi = false;
@@ -226,6 +236,7 @@ function calistir(mouse:Event)
 				A.visible = true;
 				Abalon.gotoAndStop(1);
 				soru.soruUret();
+				puanver(true,true);
 				soruT.text = soru.soru;
 				cevapYerlestir();
 			}
@@ -234,7 +245,7 @@ function calistir(mouse:Event)
 				Dbalon.gotoAndPlay(2);
 				D.visible = false;
 				okAtildi = false;
-				puan -=  2;
+				puanver(false);
 				puanT.text = puan.toString();
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 				tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
@@ -259,8 +270,8 @@ function cevapYerlestir()
 	var cevaplar:Array = new Array(4);
 	cevaplar[0] = soru.cevap;
 	var i:int;
-	for (i = 1; i < 4; i++)//bu döngü oyunun donmasına sebep olabiliyor cevap aralığını -5,+5 den -10,+10 olarak değiştirdim 
-	{
+	for (i = 1; i < 4; i++)
+	{//bu döngü oyunun donmasına sebep olabiliyor cevap aralığını -5,+5 den -10,+10 olarak değiştirdim 
 		var rCevap:int = soru.rasgele(soru.cevap - 10,soru.cevap + 10);
 		while (cevaplar.lastIndexOf(rCevap) >= 0)
 		{
@@ -314,4 +325,42 @@ function dogruCevap()
 			break;
 	}
 	return dogruBalon;
+}
+/**
+* puanver fonksiyonu verilen cevabın verilme sırasına göre alınan puanı belirler
+* 
+* 
+**/
+var yanlisSayisi:int;
+function puanver(cevap:Boolean,sifirla:Boolean=false)
+{
+	if (sifirla)
+	{
+		yanlisSayisi = 0;
+		return;
+	}
+	if (cevap)
+	{
+		// puanı ver 
+		switch (yanlisSayisi)
+		{
+			case 0 :
+				puan +=  10;
+				break;
+			case 1 :
+				puan +=  7;
+				break;
+			case 2 :
+				puan +=  3;
+				break;
+			case 3 :
+				puan +=  0;
+				break;
+		}
+	}
+	else
+	{
+		// yanlış cavap verildi puan ı azalt
+		yanlisSayisi++;
+	}
 }
