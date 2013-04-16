@@ -23,9 +23,9 @@
 		{
 			// constructor code
 			if (seviye!=null )
-			{
+			{//seviye boş değilse
 				if (seviye!=0)
-				{
+				{//seviye 0 değilse 
 					this.seviye = seviye;
 				}
 			}
@@ -82,23 +82,28 @@
 		/**
 		 * sayiUret fonksiyonu
 		 * 
+		 * @param gseviye:int girilen seviye değeri.Ön tanımlı olarak this.seviye tanımlı
 		 * @return int
 		 */
-		private function sayiUret():int
+		private function sayiUret(gseviye=null):int
 		{
-			switch (this.seviye)
+			if (gseviye==null)
+			{
+				gseviye = this.seviye;
+			}//seviye belirtilmemişse tanımlı seviyeyi al
+			switch (gseviye)
 			{
 				case 1 :
 					return this.rasgele(0,10);
 					break;
 				case 2 :
-					return this.rasgele(0,20);
+					return this.rasgele(0,30);
 					break;
 				case 3 :
-					return this.rasgele(0,10);
+					return this.rasgele(0,30);
 					break;
 				case 4 :
-					return this.rasgele(0,20);
+					return this.rasgele(0,30);
 					break;
 				default :
 					return this.rasgele(0,10);
@@ -120,25 +125,35 @@
 			switch (this.islem)
 			{
 				case '+' :
+					while (r1+r2>50 && this.seviye>=2)
+					{
+						r1 = this.sayiUret();
+						r2 = this.sayiUret();
+					}
 					this.cevap = r1 + r2;
 					break;
 				case '-' :
-					if(r2>r1 && this.seviye==1)
+					if (r2>r1 && this.seviye==1)
 					{
-						var gecici:int=r1;
+						var gecici:int = r1;
 						r1 = r2;
 						r2 = gecici;
 					}
 					this.cevap = r1 - r2;
 					break;
 				case '*' :
+					if (this.seviye > 1)
+					{
+						r1 = this.sayiUret(1);
+						r2 = this.sayiUret(1);
+					}
 					this.cevap = r1 * r2;
 					break;
 				case '/' :
 					while (r1%r2!=0 || r2==0)
 					{
-						r1 = this.rasgele(0,10);
-						r2 = this.rasgele(0,10);
+						r1 = this.sayiUret();
+						r2 = this.sayiUret();
 					}
 					this.cevap = r1 / r2;
 					break;
