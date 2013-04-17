@@ -35,6 +35,32 @@ function kapatsinmi(e:MouseEvent)
 	kapat.evetButon.addEventListener(MouseEvent.MOUSE_DOWN,function (){fscommand("quit");});
 	kapat.hayirButon.addEventListener(MouseEvent.MOUSE_DOWN,function (){kapat.gotoAndStop(1);if(currentFrame==2)sure.sureBaslat();});
 }
+/*yardım butonu*/
+yardim.addEventListener(MouseEvent.CLICK,yardimPencere);
+function yardimPencere(e:MouseEvent)
+{
+	yardim.gotoAndStop(2);
+	if (currentFrame==2)
+	{
+		sure.sureDurdur();
+	}
+	// oyunun  oynandığı  karede ise süreyi  durdur ;
+	yardim.evetButon.addEventListener(MouseEvent.MOUSE_DOWN,function (){fscommand("quit");});
+	yardim.hayirButon.addEventListener(MouseEvent.MOUSE_DOWN,function (){yardim.gotoAndStop(1);if(currentFrame==2)sure.sureBaslat();});
+}
+/*hakkında butonu*/
+hakkinda.addEventListener(MouseEvent.CLICK,hakkindaPencere);
+function hakkindaPencere(e:MouseEvent)
+{
+	hakkinda.gotoAndStop(2);
+	if (currentFrame==2)
+	{
+		sure.sureDurdur();
+	}
+	// oyunun  oynandığı  karede ise süreyi  durdur ;
+	hakkinda.evetButon.addEventListener(MouseEvent.MOUSE_DOWN,function (){fscommand("quit");});
+	hakkinda.hayirButon.addEventListener(MouseEvent.MOUSE_DOWN,function (){hakkinda.gotoAndStop(1);if(currentFrame==2)sure.sureBaslat();});
+}
 /////////////////////////////////////////////////;
 /*kare 1*/
 basla.addEventListener(MouseEvent.CLICK,kare2);
@@ -44,7 +70,7 @@ function kare2(e:MouseEvent)
 	var seviye:int = seviyeBelirle.seviye;
 
 	gotoAndStop(2);
-	sure = new sureSay(0,30,oyunBitti,süre);// kronometre
+	sure = new sureSay(0,10,oyunBitti,süre);// kronometre
 	puanT.text = puan.toString();
 	soru = new sor(seviye);//soru sınıfının Çağırılması
 	soru.soruUret();
