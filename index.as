@@ -15,7 +15,7 @@ var soru:sor;//sor sınıfının kullanılacağı değişken
 function oyunBitti()
 {
 	gotoAndStop(3);
-	skorT.text = soru.soruSayisi + 'soru soruldu' + puan.toString() + 'puan aldın';
+	skorT.text = 'Tebrikler. 1 Dakika sürede \n'+soru.soruSayisi +' işlemden '+ puan.toString() +' puan aldınız. ';
 	stage.removeEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 	//tiklamaAlani.removeEventListener(MouseEvent.CLICK,okAt);
 	stage.removeEventListener(Event.ENTER_FRAME,calistir);
@@ -45,8 +45,7 @@ function yardimPencere(e:MouseEvent)
 		sure.sureDurdur();
 	}
 	// oyunun  oynandığı  karede ise süreyi  durdur ;
-	yardim.evetButon.addEventListener(MouseEvent.MOUSE_DOWN,function (){fscommand("quit");});
-	yardim.hayirButon.addEventListener(MouseEvent.MOUSE_DOWN,function (){yardim.gotoAndStop(1);if(currentFrame==2)sure.sureBaslat();});
+	yardim.tamamButon.addEventListener(MouseEvent.MOUSE_DOWN,function (){yardim.gotoAndStop(1);if(currentFrame==2)sure.sureBaslat();});
 }
 /*hakkında butonu*/
 hakkinda.addEventListener(MouseEvent.CLICK,hakkindaPencere);
@@ -58,8 +57,7 @@ function hakkindaPencere(e:MouseEvent)
 		sure.sureDurdur();
 	}
 	// oyunun  oynandığı  karede ise süreyi  durdur ;
-	hakkinda.evetButon.addEventListener(MouseEvent.MOUSE_DOWN,function (){fscommand("quit");});
-	hakkinda.hayirButon.addEventListener(MouseEvent.MOUSE_DOWN,function (){hakkinda.gotoAndStop(1);if(currentFrame==2)sure.sureBaslat();});
+	hakkinda.tamamButon.addEventListener(MouseEvent.MOUSE_DOWN,function (){hakkinda.gotoAndStop(1);if(currentFrame==2)sure.sureBaslat();});
 }
 /////////////////////////////////////////////////;
 /*kare 1*/
