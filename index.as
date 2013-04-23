@@ -2,12 +2,16 @@
 import flash.events.MouseEvent;
 import flash.utils.Timer;
 import flash.events.TimerEvent;
+import flash.text.TextField;
+import fl.motion.Color;
+
 /*global*/
 var puan:int = 0;
 var okAtildi:Boolean = false;//okbırakıldı anlamında
 var yayBirakildi:Boolean = false;//yay bırakıldı anlamında
 var sure:sureSay;//sure sınıfının kullanılacağı değişken
 var soru:sor;//sor sınıfının kullanılacağı değişken
+var beklet:Timer = new Timer(1000,1);//dönütü ekranda birsaniye bekletmek için kullanılıyor
 /**
 * Süre bitince Çalışacak fonksiyon 
 * 
@@ -15,7 +19,7 @@ var soru:sor;//sor sınıfının kullanılacağı değişken
 function oyunBitti()
 {
 	gotoAndStop(3);
-	skorT.text = 'Tebrikler. 1 Dakika sürede \n'+soru.soruSayisi +' işlemden '+ puan.toString() +' puan aldınız. ';
+	skorT.text = 'Tebrikler. 1 Dakika sürede \n' + soru.soruSayisi + ' işlemden ' + puan.toString() + ' puan aldınız. ';
 	stage.removeEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 	//tiklamaAlani.removeEventListener(MouseEvent.CLICK,okAt);
 	stage.removeEventListener(Event.ENTER_FRAME,calistir);
@@ -61,9 +65,24 @@ function hakkindaPencere(e:MouseEvent)
 }
 /////////////////////////////////////////////////;
 /*kare 1*/
-basla.addEventListener(MouseEvent.CLICK,kare2);
+var doldurZ:Timer = new Timer(50);
+doldurZ.addEventListener(TimerEvent.TIMER,doldur);
+buton.addEventListener(MouseEvent.CLICK,function(){doldurZ.start();});
+function doldur(e:TimerEvent)
+{
+	if (buton.liquid.x < 0)
+	{
+		buton.liquid.x +=  3;
+	}
+	else
+	{
+		doldurZ.stop();
+		kare2();
+	}
+}
+//basla.addEventListener(MouseEvent.CLICK,kare2);
 /*kare 2*/
-function kare2(e:MouseEvent)
+function kare2()
 {
 	var seviye:int = seviyeBelirle.seviye;
 
@@ -99,7 +118,24 @@ function okAt(e:MouseEvent)
 	okAtildi = true;
 	yayBirakildi = true;
 }
+/**
+* parametre olarak girilen textbox ı renklendirir
+* 
+* @param nesne:Object renklendirilecek nesne
+* 
+**/
+function renklendir(nesne:TLFTextField,renk:int)
+{
+	
+	var myformat:TextFormat = new TextFormat();
+	//Bir textFormat tanımladım
 
+	myformat.color = renk;
+	//textFormat yazı  rengi kırmızı olacak
+
+	nesne.setTextFormat(myformat,0,nesne.length);
+	//metin_txt nin üzerine tanımladığım textFormatımı atadım.;
+}
 function calistir(mouse:Event)
 {
 	if (okAtildi)
@@ -128,6 +164,10 @@ function calistir(mouse:Event)
 			if ((dogruCevap() == Abalon))
 			{
 				Abalon.gotoAndPlay(2);
+				donut.text = 'TEBRİKLER DOĞRU';
+				renklendir(donut,0x00CC00);
+				beklet.start();
+				beklet.addEventListener(TimerEvent.TIMER_COMPLETE,function(){donut.text="";});
 				puanver(true);
 				puanT.text = puan.toString();
 				Abalon.cevap = true;
@@ -155,11 +195,16 @@ function calistir(mouse:Event)
 				A.visible = false;
 				okAtildi = false;// bir defa patlamasını sağlıyor
 				puanver(false);
+				donut.text = 'YANLIŞ TEKRAR DENE';
+				renklendir(donut,0xCC0000);
+				beklet.start();
+				beklet.addEventListener(TimerEvent.TIMER_COMPLETE,function(){donut.text="";});
 				puanT.text = puan.toString();
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 				tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
 				//yayın tekrar hareketini sağlıyor;
 				ok_mc.y = 629.7;//okun yaya geri gelmesini sağlıyor
+				//donut.text="";
 			}
 		}
 		if (ok_mc.hitTestObject(Bbalon))
@@ -168,6 +213,10 @@ function calistir(mouse:Event)
 			{
 				Bbalon.gotoAndPlay(2);
 				puanver(true);
+				donut.text = 'TEBRİKLER DOĞRU';
+				renklendir(donut,0x00CC00);
+				beklet.start();
+				beklet.addEventListener(TimerEvent.TIMER_COMPLETE,function(){donut.text="";});
 				puanT.text = puan.toString();
 				Bbalon.cevap = true;
 				okAtildi = false;
@@ -193,6 +242,10 @@ function calistir(mouse:Event)
 				Bbalon.gotoAndPlay(2);
 				B.visible = false;
 				puanver(false);
+				donut.text = 'YANLIŞ TEKRAR DENE';
+				renklendir(donut,0xCC0000);
+				beklet.start();
+				beklet.addEventListener(TimerEvent.TIMER_COMPLETE,function(){donut.text="";});
 				puanT.text = puan.toString();
 				okAtildi = false;
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
@@ -206,6 +259,10 @@ function calistir(mouse:Event)
 			{
 				Cbalon.gotoAndPlay(2);
 				puanver(true);
+				donut.text = 'TEBRİKLER DOĞRU';
+				renklendir(donut,0x00CC00);
+				beklet.start();
+				beklet.addEventListener(TimerEvent.TIMER_COMPLETE,function(){donut.text="";});
 				puanT.text = puan.toString();
 				Cbalon.cevap = true;
 				okAtildi = false;
@@ -232,6 +289,10 @@ function calistir(mouse:Event)
 				C.visible = false;
 				okAtildi = false;
 				puanver(false);
+				donut.text = 'YANLIŞ TEKRAR DENE';
+				renklendir(donut,0xCC0000);
+				beklet.start();
+				beklet.addEventListener(TimerEvent.TIMER_COMPLETE,function(){donut.text="";});
 				puanT.text = puan.toString();
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 				tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
@@ -244,6 +305,10 @@ function calistir(mouse:Event)
 			{
 				Dbalon.gotoAndPlay(2);
 				puanver(true);
+				donut.text = 'TEBRİKLER DOĞRU';
+				renklendir(donut,0x00CC00);
+				beklet.start();
+				beklet.addEventListener(TimerEvent.TIMER_COMPLETE,function(){donut.text="";});
 				puanT.text = puan.toString();
 				Dbalon.cevap = true;
 				okAtildi = false;
@@ -270,6 +335,10 @@ function calistir(mouse:Event)
 				D.visible = false;
 				okAtildi = false;
 				puanver(false);
+				donut.text = 'YANLIŞ TEKRAR DENE';
+				renklendir(donut,0xCC0000);
+				beklet.start();
+				beklet.addEventListener(TimerEvent.TIMER_COMPLETE,function(){donut.text="";});
 				puanT.text = puan.toString();
 				stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 				tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
