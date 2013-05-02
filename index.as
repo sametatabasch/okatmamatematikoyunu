@@ -4,6 +4,7 @@ import flash.utils.Timer;
 import flash.events.TimerEvent;
 import flash.text.TextField;
 import fl.motion.Color;
+import flash.display.FrameLabel;
 
 /*global*/
 var puan:int = 0;
@@ -18,9 +19,9 @@ var beklet:Timer = new Timer(1000,1);//dönütü ekranda birsaniye bekletmek iç
 **/
 function oyunBitti()
 {
+	tiklamaAlani.removeEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 	gotoAndStop(3);
 	skorT.text = 'Tebrikler.\n 1 Dakika sürede ' + soru.soruSayisi + ' sorudan ' + puan.toString() + ' puan aldınız. ';
-	tiklamaAlani.removeEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 	//tiklamaAlani.removeEventListener(MouseEvent.CLICK,okAt);
 	stage.removeEventListener(Event.ENTER_FRAME,calistir);
 	var doldurYenidenBaslaZ:Timer = new Timer(50);
