@@ -19,8 +19,8 @@ var beklet:Timer = new Timer(1000,1);//dönütü ekranda birsaniye bekletmek iç
 function oyunBitti()
 {
 	gotoAndStop(3);
-	skorT.text = 'Tebrikler. 1 Dakika sürede \n' + soru.soruSayisi + ' işlemden ' + puan.toString() + ' puan aldınız. ';
-	stage.removeEventListener(MouseEvent.MOUSE_MOVE,kaydir);
+	skorT.text = 'Tebrikler.\n 1 Dakika sürede ' + soru.soruSayisi + ' sorudan ' + puan.toString() + ' puan aldınız. ';
+	tiklamaAlani.removeEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 	//tiklamaAlani.removeEventListener(MouseEvent.CLICK,okAt);
 	stage.removeEventListener(Event.ENTER_FRAME,calistir);
 	var doldurYenidenBaslaZ:Timer = new Timer(50);
@@ -115,7 +115,7 @@ function kare2()
 	puanver(true,true);
 	soruT.text = soru.soru;
 	cevapYerlestir();
-	stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
+	tiklamaAlani.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 	tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
 	stage.addEventListener(Event.ENTER_FRAME,calistir);
 }
@@ -166,7 +166,7 @@ if (okAtildi)
 		yay_mc.gotoAndPlay(2);
 		yayBirakildi = false;//yayın sürekli atılmasını ses çıkartmasını engellemek için
 	}
-	stage.removeEventListener(MouseEvent.MOUSE_MOVE,kaydir);
+	tiklamaAlani.removeEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 	tiklamaAlani.removeEventListener(MouseEvent.CLICK,okAt);
 	if (ok_mc.y >= 0)
 	{
@@ -175,7 +175,7 @@ if (okAtildi)
 	else
 	{
 		okAtildi = false;
-		stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
+		tiklamaAlani.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 		tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
 		ok_mc.y = 629.7;
 	}
@@ -193,7 +193,7 @@ if (okAtildi)
 			puanT.text = puan.toString();
 			Abalon.cevap = true;
 			okAtildi = false;//ok  atıldı  ama ok  ekrandan çıkmadığı  için burada tekrar false yapıp listenerları  ekliyoruz
-			stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
+			tiklamaAlani.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 			tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
 			ok_mc.y = 629.7;
 			Bbalon.visible = true;
@@ -221,7 +221,7 @@ if (okAtildi)
 			beklet.start();
 			beklet.addEventListener(TimerEvent.TIMER_COMPLETE,function(){donut.text="";});
 			puanT.text = puan.toString();
-			stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
+			tiklamaAlani.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 			tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
 			//yayın tekrar hareketini sağlıyor;
 			ok_mc.y = 629.7;//okun yaya geri gelmesini sağlıyor
@@ -241,7 +241,7 @@ if (okAtildi)
 			puanT.text = puan.toString();
 			Bbalon.cevap = true;
 			okAtildi = false;
-			stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
+			tiklamaAlani.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 			tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
 			ok_mc.y = 629.7;
 			Abalon.visible = true;
@@ -269,7 +269,7 @@ if (okAtildi)
 			beklet.addEventListener(TimerEvent.TIMER_COMPLETE,function(){donut.text="";});
 			puanT.text = puan.toString();
 			okAtildi = false;
-			stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
+			tiklamaAlani.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 			tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
 			ok_mc.y = 629.7;
 		}
@@ -287,7 +287,7 @@ if (okAtildi)
 			puanT.text = puan.toString();
 			Cbalon.cevap = true;
 			okAtildi = false;
-			stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
+			tiklamaAlani.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 			tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
 			ok_mc.y = 629.7;
 			Bbalon.visible = true;
@@ -315,7 +315,7 @@ if (okAtildi)
 			beklet.start();
 			beklet.addEventListener(TimerEvent.TIMER_COMPLETE,function(){donut.text="";});
 			puanT.text = puan.toString();
-			stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
+			tiklamaAlani.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 			tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
 			ok_mc.y = 629.7;
 		}
@@ -333,7 +333,7 @@ if (okAtildi)
 			puanT.text = puan.toString();
 			Dbalon.cevap = true;
 			okAtildi = false;
-			stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
+			tiklamaAlani.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 			tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
 			ok_mc.y = 629.7;
 			Bbalon.visible = true;
@@ -361,7 +361,7 @@ if (okAtildi)
 			beklet.start();
 			beklet.addEventListener(TimerEvent.TIMER_COMPLETE,function(){donut.text="";});
 			puanT.text = puan.toString();
-			stage.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
+			tiklamaAlani.addEventListener(MouseEvent.MOUSE_MOVE,kaydir);
 			tiklamaAlani.addEventListener(MouseEvent.CLICK,okAt);
 			ok_mc.y = 629.7;
 		}
