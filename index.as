@@ -109,7 +109,7 @@ function kare2()
 	var seviye:int = seviyeBelirle.seviye;
 
 	gotoAndStop(2);
-	sure = new sureSay(0,10,oyunBitti,süre);// kronometre
+	sure = new sureSay(1,0,oyunBitti,süre);// kronometre
 	puanT.text = puan.toString();
 	soru = new sor(seviye);//soru sınıfının Çağırılması
 	soru.soruUret();
